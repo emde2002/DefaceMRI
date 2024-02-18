@@ -1,5 +1,7 @@
 ## Installation Guide
 
+This code has only been tested on Linux distribution Ubuntu 23.10 and 22.04.3.
+
 ### Step 1: Install FSL Library
 
 #### Linux and macOS:
@@ -47,6 +49,8 @@
 2. Go to `Import > Import DICOM to NIfTI`.
 3. Resize the window to make sure you can see the "Files to Convert" section.
 4. Convert the files as needed.
+5. (Optional) For batch conversion of DICOM to NIfTI you can use MRIcroGL DICOM to NIfTI.py
+6. (Optional) You need to manually change the path variable in the Python file and then execute it.
 
 ### Step 6: Run Deface.py
 
