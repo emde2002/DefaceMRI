@@ -37,13 +37,13 @@ This code has only been tested on Linux distribution Ubuntu 23.10 and 22.04.3.
 
 1. Open a terminal and execute the following commands:
     ```
-    pip install time
-    pip install subprocess
-    pip install pathlib
     pip install SimpleITK
+    pip install PyQt6
     ```
 
-### Step 5: Import and Convert DICOM to NIfTI
+## Defacing Pipeline
+
+### Step 1: Import and Convert DICOM to NIfTI
 
 1. Open MRIcroGL.
 2. Go to `Import > Import DICOM to NIfTI`.
@@ -52,7 +52,7 @@ This code has only been tested on Linux distribution Ubuntu 23.10 and 22.04.3.
 5. (Optional) For batch conversion of DICOM to NIfTI you can use MRIcroGL DICOM to NIfTI.py
 6. (Optional) You need to manually change the path variable in the Python file and then execute it.
 
-### Step 6: Run Deface.py
+### Step 2: Run Deface.py
 
 1. Locate the `Deface.py` script.
 2. Right-click on the folder containing `Deface.py` and select "Open in Terminal".
@@ -60,4 +60,7 @@ This code has only been tested on Linux distribution Ubuntu 23.10 and 22.04.3.
     ```
     python3 Deface.py
     ```
+4. Select the options provided on the GUI
+5. Select directory
+6. Run
 
