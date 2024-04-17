@@ -1,14 +1,14 @@
 ## Installation Guide
-Donwload DefaceMRI from [here](https://github.com/emde2002/DefaceMRI).
+Donwload DefaceMRI from [GitHub](https://github.com/emde2002/DefaceMRI).
 
 ### Step 1: Install FSL Library
 
 #### Linux and MacOS:
-1. Download the FSL library from [FSL Downloads](https://fsl.fmrib.ox.ac.uk/fsldownloads_registration).
-2. Follow the instructions in the [FSL Installation Guide](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation):
+1. Follow the instructions in the [FSL Installation](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslInstallation).
+2. Download the FSL library from [FSL Downloads](https://fsl.fmrib.ox.ac.uk/fsldownloads_registration):
     - Click "FSL software license" and then "Agree" to accept the license agreement.
     - Fill in the personal information and select the operating system.
-    - Download the `fslinstaller.py` script.
+    - Click "Register" and click "Download FSL" to download the `fslinstaller.py` script.
     - Run the script to complete the installation.
 
 #### Windows:
@@ -24,7 +24,9 @@ Donwload DefaceMRI from [here](https://github.com/emde2002/DefaceMRI).
 
 ### Step 3: Download MRIcroGL and dcm2niix
 
-1. Download MRIcroGL from [here](https://www.nitrc.org/plugins/mwiki/index.php/mricrogl:MainPage).
+1. Download MRIcroGL from [NITRC](https://www.nitrc.org/projects/mricrogl).
+    - Next to "Download Now:" select version for the appropriate operating system and press the button next to it.
+    - Select "I Agree" to the Licence Agreement and the downloading will start. 
 2. Transfer dcm2niix from MRIcroGL's "Resources" folder to the DefaceMRI's "Resources" folder.
 
 ### Step 4: Build code
