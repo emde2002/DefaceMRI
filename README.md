@@ -31,10 +31,10 @@ pip install pydeface pathlib SimpleITK PyQt6
 ### Step 4: Build code
 
 1. In a terminal inside DefaceMRI's "Resources" folder, run:
+    - Replace the path to dcm2niix, e.g. replace "User" with the appropriate username.
 ```
 pyinstaller --noconsole --add-data '/home/User/Desktop/DefaceMRI/Resources/dcm2niix:.' DefaceMRI.py
 ```
-    - Replace the path to dcm2niix, e.g. replace "User" with the appropriate username.
 2. The software can be found at "dist/DefaceMRI/DefaceMRI".
 
 ## DefaceMRI
