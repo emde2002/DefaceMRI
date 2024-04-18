@@ -68,11 +68,11 @@ class MyApp(QWidget):
         layout.addWidget(self.checkbox_dicom, 3, 1)
         
         self.status_label = QLabel("Code is executing...", self)
-        self.status_label.setAlignment(Qt.AlignmentFlag.AlignCenter)  # Center the text
-        self.status_label.setStyleSheet("font-size: 30px;")  # Increase the font size
-        self.status_label.setVisible(False)  # Hide the label initially
+        self.status_label.setAlignment(Qt.AlignmentFlag.AlignCenter)  # Centre the text.
+        self.status_label.setStyleSheet("font-size: 30px;")  # Increase the font size.
+        self.status_label.setVisible(False)  # Hide the label initially.
 
-        layout.addWidget(self.status_label, 0, 0, 3, 3)  # Add the label to the layout
+        layout.addWidget(self.status_label, 0, 0, 3, 3)  # Add the label to the layout.
 
         layout.setSpacing(10)
         layout.setContentsMargins(10, 10, 10, 10)
@@ -114,11 +114,11 @@ class MyApp(QWidget):
                    
     def closeEvent(self, event):
         close_subprocesses()
-        # Close the application
+        # Close the application.
         event.accept()
 
     def enable_buttons(self):
-        # Enable all buttons
+        # Enable all buttons.
         self.status_label.setVisible(False)
         self.btn1.setDisabled(False)
         self.btn2.setDisabled(False)
@@ -153,7 +153,7 @@ def run_dicom_to_nifti(dicom_dir: Path) -> None:
         process = subprocess.Popen(command)
         subprocesses.append(process)
         process.wait()
-        if stop_thread:  # Check if the thread should be stopped
+        if stop_thread:  # Check if the thread should be stopped.
             break
 
 def run_pydeface(nifti_dir: Path) -> None:
@@ -174,7 +174,7 @@ def run_pydeface(nifti_dir: Path) -> None:
         process = subprocess.Popen(command)
         subprocesses.append(process)
         process.wait()
-        if stop_thread:  # Check if the thread should be stopped
+        if stop_thread:  # Check if the thread should be stopped.
             break
 
 def write_slices(series_tag_values: list, new_img: sitk.SimpleITK.Image, i: int, out_dir: Path) -> None:
@@ -196,11 +196,11 @@ def write_slices(series_tag_values: list, new_img: sitk.SimpleITK.Image, i: int,
     image_slice.SetMetaData("0008|0013", time.strftime("%H%M%S")) # Instance Creation Time
 
     # Setting the type to CT preserves the slice location.
-    image_slice.SetMetaData("0008|0060", "CT")  # set the type to CT so the thickness is carried over
+    image_slice.SetMetaData("0008|0060", "CT")  # set the type to CT so the thickness is carried over.
 
     # Image position of patient (0020, 0032) determines the 3D spacing between slices.
-    image_slice.SetMetaData("0020|0032", "\\".join(map(str,new_img.TransformIndexToPhysicalPoint((0,0,i))))) # Image Position (Patient)
-    image_slice.SetMetaData("0020,0013", str(i)) # Instance Number
+    image_slice.SetMetaData("0020|0032", "\\".join(map(str,new_img.TransformIndexToPhysicalPoint((0,0,i))))) # Image Position (Patient).
+    image_slice.SetMetaData("0020,0013", str(i)) # Instance Number.
 
     # Write to the output directory and add the extension dcm, to force writing in DICOM format.
     writer.SetFileName(str(out_dir / f"slice{i:04d}.dcm"))
@@ -210,8 +210,8 @@ def nifti_to_dicom(in_dir: Path, out_dir: Path) -> None:
     """
     Convert a NIfTI file into a DICOM series.
 
-    in_dir: the path to the NIfTI file
-    out_dir: the path to the output
+    in_dir: the path to the NIfTI file.
+    out_dir: the path to the output.
     """
 
     Path(out_dir).mkdir(parents=True, exist_ok=True)
@@ -221,14 +221,14 @@ def nifti_to_dicom(in_dir: Path, out_dir: Path) -> None:
     modification_date = time.strftime("%Y%m%d")
 
     direction = new_img.GetDirection()
-    series_tag_values = [("0008|0031", modification_time), # Series Time
-                    ("0008|0021", modification_date), # Series Date
-                    ("0008|0008","DERIVED\\SECONDARY"), # Image Type
-                    ("0020|000e", "1.2.826.0.1.3680043.2.1125." + modification_date + ".1" + modification_time), # Series Instance UID
-                    ("0020|0037", '\\'.join(map(str, (direction[0], direction[3], direction[6], direction[1], direction[4], direction[7])))), # Image Orientation (Patient)
-                    ("0008|103e", "Anonymised")] # Series Description
+    series_tag_values = [("0008|0031", modification_time), # Series Time.
+                    ("0008|0021", modification_date), # Series Date.
+                    ("0008|0008","DERIVED\\SECONDARY"), # Image Type.
+                    ("0020|000e", "1.2.826.0.1.3680043.2.1125." + modification_date + ".1" + modification_time), # Series Instance UID.
+                    ("0020|0037", '\\'.join(map(str, (direction[0], direction[3], direction[6], direction[1], direction[4], direction[7])))), # Image Orientation (Patient).
+                    ("0008|103e", "Anonymised")] # Series Description.
 
-    # Write slices to output directory
+    # Write slices to output directory.
     list(map(lambda i: write_slices(series_tag_values, new_img, i, out_dir), range(new_img.GetDepth())))
 
     print(f"Conversion of {in_dir} to DICOM completed successfully.")
