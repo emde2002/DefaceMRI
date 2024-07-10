@@ -219,12 +219,14 @@ def nifti_to_dicom(in_dir: Path, out_dir: Path) -> None:
     new_img = sitk.ReadImage(str(in_dir)) 
     modification_time = time.strftime("%H%M%S")
     modification_date = time.strftime("%Y%m%d")
-
+    rootUID = "1.2.826.0.1.3680043.2" # Medical Connections root for publicly available OIDs (UIDs)
     direction = new_img.GetDirection()
+    
     series_tag_values = [("0008|0031", modification_time), # Series Time.
                     ("0008|0021", modification_date), # Series Date.
                     ("0008|0008","DERIVED\\SECONDARY"), # Image Type.
-                    ("0020|000e", "1.2.826.0.1.3680043.2.1125." + modification_date + ".1" + modification_time), # Series Instance UID.
+                    ("0020|000d", rootUID + ".1125." + modification_date + modification_time), # Study Instance UID.
+                    ("0020|000e", rootUID + ".1125." + modification_date + ".1" + modification_time), # Series Instance UID.
                     ("0020|0037", '\\'.join(map(str, (direction[0], direction[3], direction[6], direction[1], direction[4], direction[7])))), # Image Orientation (Patient).
                     ("0008|103e", "Anonymised")] # Series Description.
 
